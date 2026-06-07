@@ -31,13 +31,13 @@ ucsd-schedulizer --list-terms
 ### Install
 
 ```bash
-uv add "git+https://github.com/<your-username>/ucsd-schedulizer.git"
+uv add "git+https://github.com/praveendesharma/ucsd-schedulizer.git"
 ```
 
 Or clone and run locally:
 
 ```bash
-git clone https://github.com/<your-username>/ucsd-schedulizer.git
+git clone https://github.com/praveendesharma/ucsd-schedulizer.git
 cd ucsd-schedulizer
 uv sync
 uv run ucsd-schedulizer SP26 -c "DSC 190"
