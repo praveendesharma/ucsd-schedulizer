@@ -6,11 +6,12 @@ readme = "README.md"
 authors = [
     { name = "Praveen Sharma", email = "80846168+praveendesharma@users.noreply.github.com" }
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 dependencies = [
     "beautifulsoup4>=4.14.3",
     "httpx>=0.28.1",
-    "icalendar>=7.1.2",
+    "icalendar>=6.3,<7",
+    "backports.zoneinfo; python_version<'3.9'",
 ]
 
 [project.scripts]
@@ -22,7 +23,7 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "pytest>=9.0.3",
+    "pytest>=7.0",
 ]
 
 [tool.pytest.ini_options]
