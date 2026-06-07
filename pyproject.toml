@@ -1,0 +1,29 @@
+[project]
+name = "ucsd-schedulizer"
+version = "0.1.0"
+description = "Build a Google Calendar schedule from UCSD course codes"
+readme = "README.md"
+authors = [
+    { name = "Praveen Sharma", email = "80846168+praveendesharma@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "httpx>=0.28.1",
+    "icalendar>=7.1.2",
+]
+
+[project.scripts]
+ucsd-schedulizer = "ucsd_schedulizer:main"
+
+[build-system]
+requires = ["uv_build>=0.11.10,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
