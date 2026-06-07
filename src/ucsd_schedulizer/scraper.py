@@ -7,7 +7,7 @@ import urllib.parse
 import httpx
 
 from .models import Course
-from .parse import parse_course_list, parse_schedule_html
+from .parse import merge_courses, parse_course_list, parse_schedule_html
 
 BASE_URL = "https://act.ucsd.edu/scheduleOfClasses/scheduleOfClassesStudentResult.htm"
 
@@ -33,7 +33,7 @@ def fetch_schedule(term_code: str, courses: str | list[str]) -> list[Course]:
     response = httpx.get(url, timeout=30.0, follow_redirects=True)
     response.raise_for_status()
 
-    parsed = parse_schedule_html(response.text)
+    parsed = merge_courses(parse_schedule_html(response.text))
     if not parsed:
         raise RuntimeError(
             f"No courses found for {', '.join(course_list)} in term {term_code}. "

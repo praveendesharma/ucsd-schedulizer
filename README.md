@@ -1,50 +1,32 @@
 # UCSD Schedulizer
 
-Turn your UCSD course list into a Google Calendar schedule in one command. Give it a quarter and the classes you're taking, and it fetches meeting times from UCSD's Schedule of Classes and writes an `.ics` file you can import into Google Calendar.
+Turn your UCSD course list into a Google Calendar schedule in one command. Give it a quarter and the classes you're taking, and it fetches meeting times from UCSD's Schedule of Classes and writes a `schedule.ics` file you can import into Google Calendar.
 
 ## Usage
 
-Generate a calendar for Spring 2026:
-
 ```bash
-ucsd-schedulizer "Spring Quarter 2026" "DSC 190, CSE 100" -o my_schedule.ics
+ucsd-schedulizer SP26 -c "MATH 20E, DSC 190"
 ```
 
-Use a term code instead of the full name:
+For each class, if there are multiple professors or sections, the tool asks you to pick the one you want. When you're done, it writes `schedule.ics` in your current directory.
+
+Browse sections by professor without building a calendar:
 
 ```bash
-ucsd-schedulizer SP26 "DSC 190" --sections A00 -o dsc190.ics
-```
-
-Preview sections without writing a file:
-
-```bash
-ucsd-schedulizer SP26 "DSC 190" --dry-run
+ucsd-schedulizer SP26 -c "MATH 20E, DSC 190" --list
 ```
 
 List supported quarters:
 
 ```bash
-ucsd-schedulizer --list-terms FA25
+ucsd-schedulizer --list-terms
 ```
-
-### Options
-
-| Flag | Description |
-|------|-------------|
-| `-o`, `--output` | Output `.ics` path (default: `schedule.ics`) |
-| `--sections` | Comma-separated section codes to include, e.g. `A00,B01` |
-| `--types` | Section types to include (default: `LE,DI,LA`) |
-| `--dry-run` | Print found sections without writing a calendar |
-| `--list-terms` | Show supported quarter codes and dates |
 
 ### Add to Google Calendar
 
 1. Open [Google Calendar](https://calendar.google.com) → **Settings** → **Import & export** → **Import**
-2. Select your `.ics` file
+2. Select `schedule.ics`
 3. Choose which calendar to add events to
-
-To share the schedule, create a dedicated calendar in Google Calendar, import the events there, then use **Settings → Share with specific people** or make the calendar public.
 
 ### Install
 
@@ -58,5 +40,5 @@ Or clone and run locally:
 git clone https://github.com/<your-username>/ucsd-schedulizer.git
 cd ucsd-schedulizer
 uv sync
-uv run ucsd-schedulizer SP26 "DSC 190" --dry-run
+uv run ucsd-schedulizer SP26 -c "DSC 190"
 ```

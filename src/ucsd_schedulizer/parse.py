@@ -191,3 +191,21 @@ def filter_sections(
                 continue
             selected.append(section)
     return selected
+
+
+def merge_courses(courses: list[Course]) -> list[Course]:
+    """Combine duplicate course listings into one entry with all sections."""
+    merged: dict[str, Course] = {}
+    for course in courses:
+        key = course.code.upper()
+        if key not in merged:
+            merged[key] = Course(
+                subject=course.subject,
+                number=course.number,
+                title=course.title,
+                sections=list(course.sections),
+            )
+            continue
+        existing = merged[key]
+        existing.sections.extend(course.sections)
+    return list(merged.values())
